@@ -30,3 +30,27 @@ a {
   display: flex;
   flex-direction: column;
 }
+
+.front-end .slick-next:before, .front-end .slick-prev:before{
+  color:#6BD1FF;
+}
+
+.back-end .slick-next:before, .back-end .slick-prev:before{
+  color:#00C86F;
+}
+
+.data-science .slick-next:before, .data-science .slick-prev:before{
+  color:#9cd33b;
+}
+
+.filmes .slick-next:before, .filmes .slick-prev:before{
+  color:orange;
+}
+
+.games .slick-next:before, .games .slick-prev:before{
+  color:red;
+}
+
+.tecnologia .slick-next:before, .tecnologia .slick-prev:before{
+  color:#6b5be2;
+}
