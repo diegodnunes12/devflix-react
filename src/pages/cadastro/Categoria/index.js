@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PageDefault from '../../../components/PageDefault'
 import { Link } from 'react-router-dom';
 import FormFields from '../../../components/FormFields';
+import Button from '../../../components/Button';
 
 function CadastroCategoria() {
 
@@ -23,6 +24,8 @@ function CadastroCategoria() {
 
     function  handleChange(e) {
       //const { getAttribute, value } = e.target;
+      console.log(e.target.getAttribute('name'))
+      console.log(e.target.value)
       setValor(e.target.getAttribute('name'), e.target.value)
     }
 
@@ -41,25 +44,18 @@ function CadastroCategoria() {
           }}
         >
             <FormFields label="Nome" type="text" name="nome" value={valores.nome} onChange={handleChange} />
-            
-            <div>
-              <label>
-              Descrição:
-              <textarea type="text" name='descricao' value={valores.descricao} onChange={handleChange} 
-              />
-            </label>
-            </div>
 
+            <FormFields label="Descrição" type="textarea" name="descricao" value={valores.descricao} onChange={handleChange} />
+            
             <FormFields label="Cor" type="color" name="cor" value={valores.color} onChange={handleChange} />
-
             
-            <button>Cadastrar</button>
+            <Button>Cadastrar</Button>
         </form>
 
         <h3 style={{marginTop:'40px'}}>Categorias Cadastradas</h3>
         <ul>
-          {categorias.map( (cat, indice) =>{
-            return <li key={`${cat}${indice }`}>{cat.nome}</li>
+          {categorias.map( (categoria) =>{
+            return <li key={`${categoria.nome}`}>{categoria.nome}</li>
           })
           }
         </ul>
