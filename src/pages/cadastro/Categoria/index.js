@@ -15,8 +15,8 @@ function CadastroCategoria() {
     const [categorias, setCategoria] = useState([])
     const [valores, setValores] = useState(dadosIniciais)
 
-    function setValor(chave, valor) {
-      setValores({
+    function setValor(chave, valor) {      
+      setValores({       
         ...valores,
         [chave]: valor
       })
@@ -24,8 +24,8 @@ function CadastroCategoria() {
 
     function  handleChange(e) {
       //const { getAttribute, value } = e.target;
-      console.log(e.target.getAttribute('name'))
-      console.log(e.target.value)
+      /* console.log(e.target.getAttribute('name'))
+      console.log(e.target.value) */
       setValor(e.target.getAttribute('name'), e.target.value)
     }
 
