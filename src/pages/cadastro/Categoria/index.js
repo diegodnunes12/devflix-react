@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import PageDefault from '../../../components/PageDefault'
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import PageDefault from '../../../components/PageDefault'
 import FormFields from '../../../components/FormFields';
 import Button from '../../../components/Button';
 
@@ -9,8 +9,8 @@ function CadastroCategoria() {
     const dadosIniciais = {
       nome: '',
       descricao: '',
-      cor: ''
-    }
+      cor: '',
+    };
 
     const [categorias, setCategoria] = useState([])
     const [valores, setValores] = useState(dadosIniciais)
@@ -18,16 +18,18 @@ function CadastroCategoria() {
     function setValor(chave, valor) {      
       setValores({       
         ...valores,
-        [chave]: valor
-      })
+        [chave]: valor,
+      });
     }
 
     function  handleChange(e) {
-      //const { getAttribute, value } = e.target;
-      /* console.log(e.target.getAttribute('name'))
-      console.log(e.target.value) */
-      setValor(e.target.getAttribute('name'), e.target.value)
+      setValor(e.target.getAttribute('name'), e.target.value);
     }
+
+    useEffect(() => {
+        const URL = "http://localhost:8080/categorias";
+        fetch(URL);
+    }, [])
 
     return (
       <PageDefault>
@@ -43,7 +45,7 @@ function CadastroCategoria() {
             setValores(dadosIniciais)
           }}
         >
-            <FormFields label="Nome" type="text" name="nome" value={valores.nome} onChange={handleChange} />
+            <FormFields label="Nome" name="nome" value={valores.nome} onChange={handleChange} />
 
             <FormFields label="Descrição" type="textarea" name="descricao" value={valores.descricao} onChange={handleChange} />
             
@@ -52,7 +54,11 @@ function CadastroCategoria() {
             <Button>Cadastrar</Button>
         </form>
 
-        <h3 style={{marginTop:'40px'}}>Categorias Cadastradas</h3>
+          {categorias.length === 0 && (
+            <div>Loading...</div>
+          )}
+
+        {/* <h3 style={{marginTop:'40px'}}>Categorias Cadastradas</h3> */}
         <ul>
           {categorias.map( (categoria) =>{
             return <li key={`${categoria.nome}`}>{categoria.nome}</li>
