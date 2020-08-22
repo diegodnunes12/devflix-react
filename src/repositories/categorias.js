@@ -1,10 +1,10 @@
 import config from "../config";
 
-const CATEGORIES_URL = `${config.URL_BACKEND}/categorias?_embed=videos`
+const CATEGORIES_URL = `${config.URL_BACKEND}/categorias`
 
 function getAllWithVideos(){
 
-    return fetch(CATEGORIES_URL)
+    return fetch(`${CATEGORIES_URL}?_embed=videos`)
         .then(async (response) => {
           if(response.ok){
             const resposta = await response.json()
