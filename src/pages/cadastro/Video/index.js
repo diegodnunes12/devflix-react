@@ -4,11 +4,14 @@ import { Link, useHistory } from 'react-router-dom';
 import FormFields from '../../../components/FormFields';
 import useForm from '../../../hooks/useForm';
 import Button from '../../../components/Button';
+import videosRepository from '../../../repositories/videos'
 
 function CadastroVideo() {
   const history = useHistory()
   const { handleChange, valores } = useForm({
-
+    titulo: 'Novo Vídeo',
+    url: 'https://youtube.com.br',
+    categoria: 'front-end'
   })
 
     return (
@@ -17,9 +20,21 @@ function CadastroVideo() {
 
         <form onSubmit={(event) => {
           event.preventDefault()
-          history.push('/')
+
+          videosRepository.create({
+            titulo: valores.titulo,
+            url: valores.url,
+            categoriaId: 1
+          })
+          .then(() => {
+
+            history.push('/')
+          })
+
         }} >
           <FormFields label="Titulo do vídeo" name="titulo" value={valores.titulo} onChange={handleChange} />
+          <FormFields label="URL do vídeo" name="url" value={valores.url} onChange={handleChange} />
+          <FormFields label="Categoria do vídeo" name="categoria" value={valores.categoria} onChange={handleChange} />
 
           <Button type="submit">Cadastrar</Button>
         </form>
