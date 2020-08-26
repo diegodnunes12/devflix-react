@@ -1,18 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PageDefault from '../../../components/PageDefault'
 import { Link, useHistory } from 'react-router-dom';
 import FormFields from '../../../components/FormFields';
 import useForm from '../../../hooks/useForm';
 import Button from '../../../components/Button';
 import videosRepository from '../../../repositories/videos'
+import categoriasRepository from '../../../repositories/categorias'
 
 function CadastroVideo() {
   const history = useHistory()
+  const [categorias, setCategorias] = useState([])
   const { handleChange, valores } = useForm({
     titulo: 'Novo Vídeo',
     url: 'https://youtube.com.br',
     categoria: 'front-end'
   })
+
+  useEffect( () => {
+    categoriasRepository
+    .getAll()
+    .then((categoriasFromServer) => {
+      setCategorias(categoriasFromServer)
+    })
+  }, [] )
 
     return (
       <PageDefault>
@@ -21,10 +31,16 @@ function CadastroVideo() {
         <form onSubmit={(event) => {
           event.preventDefault()
 
+          const categoriaEscolhida = categorias.find( (categoria) => {
+              return categoria.titulo === valores.categoria;
+          } )
+
+          console.log(" ----------", categoriaEscolhida)
+
           videosRepository.create({
             titulo: valores.titulo,
             url: valores.url,
-            categoriaId: 1
+            categoriaId: categoriaEscolhida.id
           })
           .then(() => {
 
