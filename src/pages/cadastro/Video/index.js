@@ -10,6 +10,7 @@ import categoriasRepository from '../../../repositories/categorias'
 function CadastroVideo() {
   const history = useHistory()
   const [categorias, setCategorias] = useState([])
+  const categoryTitles = categorias.map(({ titulo }) => titulo);
   const { handleChange, valores } = useForm({
     titulo: 'Novo Vídeo',
     url: 'https://youtube.com.br',
@@ -35,8 +36,6 @@ function CadastroVideo() {
               return categoria.titulo === valores.categoria;
           } )
 
-          console.log(" ----------", categoriaEscolhida)
-
           videosRepository.create({
             titulo: valores.titulo,
             url: valores.url,
@@ -48,9 +47,27 @@ function CadastroVideo() {
           })
 
         }} >
-          <FormFields label="Titulo do vídeo" name="titulo" value={valores.titulo} onChange={handleChange} />
-          <FormFields label="URL do vídeo" name="url" value={valores.url} onChange={handleChange} />
-          <FormFields label="Categoria do vídeo" name="categoria" value={valores.categoria} onChange={handleChange} />
+          <FormFields 
+            label="Titulo do vídeo" 
+            name="titulo" 
+            value={valores.titulo} 
+            onChange={handleChange} 
+          />
+
+          <FormFields 
+            label="URL do vídeo" 
+            name="url" 
+            value={valores.url} 
+            onChange={handleChange} 
+          />
+
+          <FormFields 
+            label="Categoria do vídeo" 
+            name="categoria" 
+            value={valores.categoria} 
+            onChange={handleChange} 
+            suggestions={categoryTitles}
+          />
 
           <Button type="submit">Cadastrar</Button>
         </form>

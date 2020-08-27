@@ -1,5 +1,5 @@
 import React from 'react'
-import ProtoTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 const FormFieldWrapper = styled.div`
@@ -69,7 +69,8 @@ function FormFields({label, type, name, value, onChange, suggestions}) {
     const isTextArea = type === 'textarea'
     const tag = isTextArea ? 'textarea' : 'input'
 
-    const hasValue = false /* Boolean(value.length()) */
+    const hasValue = Boolean(value.length) /* Boolean(value.length()) */
+    const hasSuggestions = Boolean(suggestions.length);
 
 
     return (
@@ -80,21 +81,41 @@ function FormFields({label, type, name, value, onChange, suggestions}) {
                     id={fieldId} 
                     type={type} 
                     name={name} 
-                    /* value={valor} */
+                    value={value}
                     hasValue={hasValue} 
                     onChange={onChange}
-                    list={`suggestionfor_${fieldId}`}
+                    autoComplete={hasSuggestions ? 'off' : 'on'}
+                    list={hasSuggestions ? `suggestionFor_${fieldId}` : undefined}                    
                 />
                 <Label.Text>
                     {label}:
                 </Label.Text>
-                <datalist id={`suggestionfor_${fieldId}`}>
-                  {
-                    suggestions.map( (suggestion) => (
-                      <option value={suggestion}>{suggestion}</option>
-                    ) )
-                  }
-                </datalist>
+
+                {
+                  hasSuggestions && (
+                    <datalist id={`suggestionFor_${fieldId}`}>
+                      {
+                      suggestions.map((suggestion) => (
+                        <option value={suggestion} key={`suggestionFor_${fieldId}_option${suggestion}`}>
+                          {suggestion}
+                        </option>
+                      ))
+                    }
+                    </datalist>
+                  )
+                }
+
+                {/* {
+                  hasSuggestions && (
+                  <datalist id={`suggestionfor_${fieldId}`}>
+                    {
+                      suggestions.map( (suggestion) => (
+                        <option value={suggestion} key={`suggestionFor_${fieldId}_option${suggestion}`}>{suggestion}</option>
+                      ) )
+                    }
+                  </datalist>
+                  )
+                } */} 
             </Label>
         </FormFieldWrapper>
     )
@@ -104,19 +125,16 @@ FormFields.defaultProps = {
     type: 'text',
     valor: '',
     onChange: () => {},
-    suggestions:[
-      'Front End',
-      'Back End'
-    ]
+    suggestions: [],
 }
 
-FormFields.protoTypes = {
-    label: ProtoTypes.string.isRequired, 
-    type: ProtoTypes.string,
-    name: ProtoTypes.string.isRequired,  
-    valor: ProtoTypes.string, 
-    onChange: ProtoTypes.func,
-    suggestions: ProtoTypes.arrayOf(ProtoTypes.string)
+FormFields.propTypes = {
+    label: PropTypes.string.isRequired, 
+    type: PropTypes.string,
+    name: PropTypes.string.isRequired,  
+    valor: PropTypes.string, 
+    onChange: PropTypes.func,
+    suggestions: PropTypes.arrayOf(PropTypes.string),
 }
 
 export default FormFields;
