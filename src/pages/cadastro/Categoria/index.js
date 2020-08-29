@@ -48,7 +48,7 @@ function CadastroCategoria() {
 
             <FormFields label="Descrição" type="textarea" name="descricao" value={valores.descricao} onChange={handleChange} />
             
-            <FormFields label="Cor" type="color" name="cor" value={valores.color} onChange={handleChange} />
+            <FormFields label="Cor" type="color" name="cor" value={valores.cor} onChange={handleChange} />
             
             <Button>Cadastrar</Button>
         </form>
