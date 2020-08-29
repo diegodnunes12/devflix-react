@@ -4,6 +4,7 @@ import PageDefault from '../../../components/PageDefault'
 import FormFields from '../../../components/FormFields';
 import Button from '../../../components/Button';
 import useForm from '../../../hooks/useForm';
+import categoriasRepository from '../../../repositories/categorias'
 
 function CadastroCategoria() {
 
@@ -36,12 +37,23 @@ function CadastroCategoria() {
 
         <form onSubmit={function handleSubmit(e) {
             e.preventDefault()
+
+            categoriasRepository.create({
+              nome: valores.nome,
+              descricao: valores.descricao,
+              cor: valores.cor
+            })
+            .then(() => {
+              clearForm()
+              //history.push('/')
+            })
+
             setCategoria([
               ...categorias,
               valores
             ])
 
-            clearForm()
+            //clearForm()
           }}
         >
             <FormFields label="Nome" name="nome" value={valores.nome} onChange={handleChange} />

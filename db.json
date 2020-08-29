@@ -49,6 +49,12 @@
         "text": "Cursos de Data Science na Alura",
         "url": "https://www.alura.com.br/cursos-online-mobile"
       }
+    },
+    {
+      "nome": "teste",
+      "descricao": "testse",
+      "cor": "#5c4a82",
+      "id": 7
     }
   ],
   "videos": [
