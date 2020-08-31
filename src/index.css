@@ -5,7 +5,7 @@
 }
 
 :root {
-  --primary: #2A7AE4;
+  --primary: #E50914;
   --black: #000000;
   --blackLighter: #9E9E9E;
   --grayLight: #F5F5F5;
@@ -53,4 +53,9 @@ a {
 
 .tecnologia .slick-next:before, .tecnologia .slick-prev:before{
   color:#6b5be2;
+}
+
+.link-novo{
+  margin: 30px 0;
+  display: block;
 }

@@ -51,10 +51,22 @@
       }
     },
     {
-      "nome": "teste",
+      "titulo": "teste",
       "descricao": "testse",
       "cor": "#5c4a82",
       "id": 7
+    },
+    {
+      "titulo": "Tutoriais",
+      "descricao": "Tutorias de  programação",
+      "cor": "#126baf",
+      "id": 8
+    },
+    {
+      "titulo": "Séries",
+      "descricao": "As melhores séries",
+      "cor": "#d6a12e",
+      "id": 9
     }
   ],
   "videos": [
@@ -276,6 +288,12 @@
       "url": "https://www.youtube.com/watch?v=vTvVbG0_Sog",
       "categoriaId": 4,
       "id": 61
+    },
+    {
+      "titulo": "Validando Formulários com react",
+      "url": "https://www.youtube.com/watch?v=Pnnkg9PysGk",
+      "categoriaId": 8,
+      "id": 62
     }
   ]
 }

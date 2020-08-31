@@ -39,7 +39,7 @@ function CadastroCategoria() {
             e.preventDefault()
 
             categoriasRepository.create({
-              nome: valores.nome,
+              titulo: valores.nome,
               descricao: valores.descricao,
               cor: valores.cor
             })
@@ -76,10 +76,11 @@ function CadastroCategoria() {
           })
           }
         </ul>
-
-        <Link to="/">
+        <div>
+        <Link to="/" className="link-novo">
             Ir para home
         </Link>
+        </div>
       </PageDefault>
     )
 }
