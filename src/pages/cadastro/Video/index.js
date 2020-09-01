@@ -52,6 +52,7 @@ function CadastroVideo() {
             name="titulo" 
             value={valores.titulo} 
             onChange={handleChange} 
+            required={true}
           />
 
           <FormFields 
@@ -59,6 +60,7 @@ function CadastroVideo() {
             name="url" 
             value={valores.url} 
             onChange={handleChange} 
+            required={true}
           />
 
           <FormFields 
@@ -66,6 +68,7 @@ function CadastroVideo() {
             name="categoria" 
             value={valores.categoria} 
             onChange={handleChange} 
+            required={true}
             suggestions={categoryTitles}
           />
 

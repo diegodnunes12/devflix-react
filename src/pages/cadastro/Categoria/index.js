@@ -56,11 +56,31 @@ function CadastroCategoria() {
             //clearForm()
           }}
         >
-            <FormFields label="Nome" name="nome" value={valores.nome} onChange={handleChange} />
+            <FormFields 
+              label="Nome" 
+              name="nome" 
+              value={valores.nome} 
+              onChange={handleChange}
+              required={true}
+            />
 
-            <FormFields label="Descrição" type="textarea" name="descricao" value={valores.descricao} onChange={handleChange} />
+            <FormFields 
+              label="Descrição" 
+              type="textarea" 
+              name="descricao" 
+              value={valores.descricao} 
+              onChange={handleChange}
+              required={false} 
+            />
             
-            <FormFields label="Cor" type="color" name="cor" value={valores.cor} onChange={handleChange} />
+            <FormFields 
+              label="Cor" 
+              type="color" 
+              name="cor" 
+              value={valores.cor} 
+              onChange={handleChange}
+              required={true} 
+            />
             
             <Button>Cadastrar</Button>
         </form>

@@ -67,6 +67,12 @@
       "descricao": "As melhores séries",
       "cor": "#d6a12e",
       "id": 9
+    },
+    {
+      "titulo": "Nova Categoria",
+      "descricao": "",
+      "cor": "",
+      "id": 10
     }
   ],
   "videos": [

@@ -64,7 +64,7 @@ const Input = styled.input`
   `}
 `;
 
-function FormFields({label, type, name, value, onChange, suggestions}) {
+function FormFields({label, type, name, value, onChange, required, suggestions}) {
     const fieldId = `id_${name}`
     const isTextArea = type === 'textarea'
     const tag = isTextArea ? 'textarea' : 'input'
@@ -84,6 +84,7 @@ function FormFields({label, type, name, value, onChange, suggestions}) {
                     value={value}
                     hasValue={hasValue} 
                     onChange={onChange}
+                    required={required ? true : false}
                     autoComplete={hasSuggestions ? 'off' : 'on'}
                     list={hasSuggestions ? `suggestionFor_${fieldId}` : undefined}                    
                 />
